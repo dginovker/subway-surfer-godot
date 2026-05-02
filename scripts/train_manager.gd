@@ -288,6 +288,11 @@ func _on_collision() -> void:
     _player.set("_target_lane", 1)
     _player.set("_is_switching", false)
     _player.set("_switch_timer", 0.0)
+    _player.set("_distance_traveled", 0.0)
+    _player.set("forward_speed", 20.0)
+    var score_label: Label = _player.get("_score_label")
+    if score_label != null:
+        score_label.text = "Score: 0"
     var body: Node3D = _player.get_node("Body")
     if body != null:
         body.position = Vector3(0, 1.15, 0)
