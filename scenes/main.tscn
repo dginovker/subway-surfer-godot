@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://d4i7bovpty8wv"]
+
+[ext_resource type="Script" uid="uid://drd71nqrvbsk6" path="res://scripts/track_generator.gd" id="1_abc"]
+[ext_resource type="Script" uid="uid://bhitfdtlyv68s" path="res://scripts/track_camera.gd" id="2_def"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
+sky_top_color = Color(0.35, 0.65, 1, 1)
+sky_horizon_color = Color(0.7, 0.85, 1, 1)
+ground_bottom_color = Color(0.35, 0.5, 0.35, 1)
+ground_horizon_color = Color(0.7, 0.85, 1, 1)
+
+[sub_resource type="Sky" id="Sky_sky"]
+sky_material = SubResource("ProceduralSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_ghi"]
+background_mode = 2
+background_color = Color(0.08, 0.08, 0.1, 1)
+sky = SubResource("Sky_sky")
+ambient_light_source = 3
+ambient_light_color = Color(0.25, 0.25, 0.3, 1)
+fog_enabled = true
+fog_light_color = Color(0.85, 0.92, 1, 1)
+fog_density = 0.003
+
+[node name="Main" type="Node3D" unique_id=893578462]
+
+[node name="TrackGenerator" type="Node3D" parent="." unique_id=46631687]
+script = ExtResource("1_abc")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=611432063]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 8, 12)
+fov = 70.0
+script = ExtResource("2_def")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=890678079]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 50, 80, 50)
+light_energy = 1.8
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1962351634]
+environment = SubResource("Environment_ghi")
